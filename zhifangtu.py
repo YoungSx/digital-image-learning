@@ -5,15 +5,34 @@ import math
 
 img = Image.open('haizi.jpg').convert('L')
 a1 = np.asarray(img).flatten()
-a2 = np.array(a1)
+print(a1)
+# a2 = np.array(a1)
 counts = np.zeros(256)
-x = a1.size
-for i in range (x):
-  counts[a1[i]] += 1
-# for i in range (256):
-#   counts[i] = counts[i] / (500 * 375)
-print(counts)
-plt.hist(counts, bins=256)
-plt.show()
-# img2 = Image.fromarray(a2)
-# img2.show()
+counts2 = np.zeros(256)
+counts3 = np.zeros(256)
+counts4 = np.zeros(256)
+
+x1 = a1.size
+for i in range (x1):
+  counts[a1[i]] += (1 / x1)
+
+maxn = 255
+minn = 0
+
+for i in range (256):
+  if i == 0:
+    counts2[i] = counts[i]
+  else:
+    counts2[i] = counts2[i - 1] + counts[i]
+
+for i in range(256):
+  counts3[i] = round((maxn - minn) * counts2[i] + 0.5)
+
+for i in range(256):
+  counts4[int(counts3[i])] += counts[i]
+  print(counts4[i])
+
+# plt.hist(a1, bins=256, density=1)
+# plt.show()
+x = range(256)
+# plt.show()
