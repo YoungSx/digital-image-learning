@@ -30,7 +30,11 @@ for i in range(256):
 
 for i in range(256):
   counts4[int(counts3[i])] += counts[i]
+
+for i in range(256):
+  counts4[i] = counts4[int(counts3[i])]
   print(counts4[i])
+
 
 # plt.hist(a1, bins=256, density=1)
 # plt.show()
