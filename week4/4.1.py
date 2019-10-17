@@ -1,14 +1,17 @@
-from PIL import Image
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+from PIL import Image
 
-img1 = Image.open('./static/leina.jpg').convert('L')
-arr1 = np.array(img1)
-trans = np.fft.fft2(img1)
-x, y = trans.shape
+o = Image.open('./static/leina.jpg').convert('L')
+f = np.fft.fft2(o)                              #傅里叶变换
+fshift = np.fft.fftshift(f)                     #零频率移到中心
 
-h = np.array(arr1)
-result = np.array(arr1)
+result1 = 20 * np.log(np.abs(fshift))           #阈值转换
+Image.fromarray(result1).show()
+
+h = np.array(fshift)
+result2 = np.array(fshift)
+x, y = result2.shape
 
 for i in range(x):
   for j in range(y):
@@ -20,7 +23,10 @@ for i in range(x):
 
 for i in range(x):
   for j in range(y):
-    result[i, j] = trans[i, j] * h[i, j]
+    result2[i, j] = fshift[i, j] * h[i, j]
 
-img2 = Image.fromarray(result)
-img2.show()
+ishift = np.fft.ifftshift(result2)
+io = np.fft.ifft2(ishift)
+io = np.abs(io)
+
+Image.fromarray(io).show()
