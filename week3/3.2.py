@@ -7,7 +7,7 @@ def gradientTemplate(x1, y1, arr):
     res = abs(int(arr[x1 + 1, y1]) - int(arr[x1, y1])) + abs(int(arr[x1, y1 + 1]) - int(arr[x1, y1]))
     return res
 
-img1 = Image.open('./static/test3.jpg').convert('L')
+img1 = Image.open('./static/zaosheng.jpg').convert('L')
 img1.show()
 a1 = np.array(img1)
 a2 = np.array(a1)

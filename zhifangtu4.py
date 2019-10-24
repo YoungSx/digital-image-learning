@@ -3,11 +3,11 @@ import numpy as np
 from PIL import Image
 import math
 
-img = Image.open('haizi.jpg').convert('L')
+img = Image.open('./static/tree.jpg').convert('L')
+img.show()
 x, y = img.size
 img2 = np.array(img)
 a1 = np.asarray(img)
-a2 = np.array(a1)
 
 b1 = np.array(a1).flatten()
 
@@ -37,10 +37,7 @@ arrayResult2 = np.zeros(len(b1), dtype=int)
 for i in range(len(b1)):
     arrayResult2[i] = int(counts3[b1[i]])
 
-arrayResult2 = arrayResult2.reshape((x, y))
-# for i in range(x):
-#   for j in range(y):
-#     arrayResult[i, j] = int(counts3[a1[i, j]])
-# print(arrayResult2)
+# 重新二维化
+arrayResult2 = arrayResult2.reshape((y, x))
 img3 = Image.fromarray(arrayResult2)
 img3.show()

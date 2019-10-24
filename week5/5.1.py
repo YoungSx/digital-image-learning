@@ -7,13 +7,12 @@ def geometric_mean(x1, y1, arr):
     product = 1
     for i2 in range(x1 - 1, x1 + 1):
         for j2 in range(y1 - 1, y1 + 1):
-            product *= arr[i2][j2]
-    avg = int(pow(product, (1 / (3 * 3))))
-    # print(avg)
+            product = int(product) * int(arr[i2][j2])
+    avg = int(pow(int(product), (1 / 9)))
     return avg
 
 img1 = Image.open('./static/zaosheng.jpg').convert('L')
-img1.show()
+# img1.show()
 a1 = np.array(img1)
 a2 = np.array(a1)
 x, y = a2.shape
